@@ -1,0 +1,20 @@
+# ---- 1. Install Homebrew (if not installed) ---
+
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# -- (Copy Paste both the following lines together)
+
+/bin/echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zshrc
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# ---- 2. Install Open CV ---
+
+brew install opencv@4
+
+# ---- 3. Verify open cv installed ---
+
+pkg-config --modversion opencv4
+
+# ---- 4. Compile your program with open cv ---
+
+g++ your_code.cpp -o your_program `pkg-config --cflags --libs opencv4`

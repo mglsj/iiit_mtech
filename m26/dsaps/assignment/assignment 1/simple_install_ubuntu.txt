@@ -1,0 +1,17 @@
+A simpler OpenCV Installation on Ubuntu/Debian
+
+# 1. Update package list
+
+sudo apt update
+
+# 2. Install Open CV & dependencies
+
+sudo apt install -y build-essential pkg-config libopencv-dev
+
+# 3. Test if open cv installed
+
+pkg-config --modversion opencv4
+
+# 4. How to include open cv with your c++ code
+
+g++ code_file_name.cpp -o compiled_file_name `pkg-config --cflags --libs opencv4`

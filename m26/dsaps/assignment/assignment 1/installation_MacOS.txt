@@ -1,0 +1,63 @@
+# =========================================
+# OpenCV Installation on macOS
+# =========================================
+
+# ---- 1. Install Homebrew (if not installed) ----
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Add brew to PATH (Apple Silicon)
+/bin/echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zshrc
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Update Homebrew
+brew update
+
+# ---- 2. Install Dependencies ----
+brew install cmake pkg-config
+brew install jpeg libpng libtiff webp openexr
+brew install eigen tbb
+brew install ffmpeg
+brew install gtk+3   # optional, for GUI features (imshow, etc.)
+
+# ---- 3. Clone OpenCV (and contrib modules if needed) ----
+git clone https://github.com/opencv/opencv.git
+git clone https://github.com/opencv/opencv_contrib.git
+
+# ---- 4. Build OpenCV ----
+cd opencv
+mkdir build && cd build
+
+cmake -D CMAKE_BUILD_TYPE=Release \
+      -D CMAKE_INSTALL_PREFIX=/opt/homebrew \
+      -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
+      -D BUILD_opencv_python3=ON \
+      ..
+
+# ---- 5. Compile ----
+make -j$(sysctl -n hw.physicalcpu)
+
+# ---- 6. Install ----
+sudo make install
+
+# ---- 7. Verify Installation ----
+pkg-config --modversion opencv4
+
+# ---- 8. Compile your C++ code ----
+g++ your_code.cpp -o your_program `pkg-config --cflags --libs opencv4`
+
+# ---- Alternative (Quick Install via Homebrew) ----
+brew install opencv
+
+# Add pkg-config path if not automatically linked:
+# Apple Silicon
+export PKG_CONFIG_PATH="/opt/homebrew/opt/opencv@4/lib/pkgconfig:$PKG_CONFIG_PATH"
+# Intel Mac
+export PKG_CONFIG_PATH="/usr/local/opt/opencv@4/lib/pkgconfig:$PKG_CONFIG_PATH"
+
+# Verify
+pkg-config --modversion opencv4
+
+# Compile
+g++ your_code.cpp -o your_program `pkg-config --cflags --libs opencv4`
+
+
