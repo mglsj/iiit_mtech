@@ -1,0 +1,49 @@
+Syllabus
+
+Unit 1: Vector spaces, subspaces, Linear dependence, Span, Basis, Dimension, Finite dimension vector
+spaces Linear transformation, Range and Null space of linear transformation, Rank Nullity Theorem,
+Sylvester's Law, Matrix representation of a linear transformation for finite dimensional linear spaces,
+Matrix operations, change of basis, Rank of a Matrix, Range and Null Space of a matrix representing a
+linear transformation. Linear spaces with inner product [inner product example over space of functions:
+orthogonality and orthogonal functions in L_2.
+
+Unit 2: System of Linear Equations, Row-echelon form, reduced row-echelon form. Gauss-Jordon
+elimination, Solution of linear systems using Gauss-Jordon elimination, matrix inversion by Gauss
+Jordon elimination, Understanding Range Space and Solution Space using Rank-Nullity Theorem.
+
+Unit 3: Eigenvalues and Inner product: Eigenvalues & Eigenvectors, Norms, Inner Products and
+Projections, Applications like Analysis of Random Walks.
+
+Unit 4: Advanced Topics: Spectral & Singular Value Decomposition Theorems, Applications of SVD and
+Best Fit Subspaces
+ 
+Grading:
+
+We follow absolute grading:
+
+>85 : A, >75 A-, >70 B, >60: B-, >50: C, >40: C-, >30: D, <30: F
+ 
+Marks Breakdown:
+
+Quiz: 35%
+
+End sem: 45%
+
+Assignments: 20%
+
+Textbooks:
+
+    Lecture notes shared in class
+    Linear Algebra Done Right, Sheldon Axler, 4th Edition, https://linear.axler.net/
+
+Assignments: 
+
+We plan 4 assignments after about 2 weeks. Assignements must be wrriten by hand and scan uploaded to moodle with roll number. There may be oral viva to check.
+
+TA for the Course
+
+There are two half-TAs for this course. The office hours are 11:30AM on Tue and Friday in B-101 (Vindhya). 
+
+Course Syllabus
+
+Please refer to course syllabus uploaded on intranet.
