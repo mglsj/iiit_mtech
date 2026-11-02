@@ -1,0 +1,108 @@
+# ===================== SETUP =====================
+# Open a terminal INSIDE the assignment folder and run this block once.
+# After this you are inside eval_test. Stay there for all test cases (do NOT cd ..).
+
+make
+rm -rf eval_test && mkdir eval_test
+cp mygit eval_test/
+cd eval_test
+echo -n "hello world" > test.txt
+echo "AOS TA's are the best" > test_tree_file_1.txt
+mkdir -p test_tree_1 test_tree_2 a/b/c empty_folder
+echo "PG1 is GOAT" > test_tree_1/test_tree_file_2.txt
+echo "Buidling VCS is fun" > test_tree_2/test_tree_file_3.txt
+echo "deep" > a/b/c/deep.txt
+touch empty.txt
+pwd
+ls
+
+
+# ===================== TEST CASES =====================
+# <...> means: copy the SHA printed by an earlier step and paste it there.
+
+# 1  init
+./mygit init
+ls -a
+
+# 2  hash-object
+./mygit hash-object test.txt
+./mygit hash-object -w test.txt
+
+# 3  cat-file
+./mygit cat-file -p 95d09f2b10159347eece71399a7e2e907ea3df4f
+./mygit cat-file -s 95d09f2b10159347eece71399a7e2e907ea3df4f
+./mygit cat-file -t 95d09f2b10159347eece71399a7e2e907ea3df4f
+
+# 4  write-tree
+./mygit write-tree
+
+# 5  cat-file on the tree
+./mygit cat-file -t 1ac323ab2a1529daafdd784cba7558ef3575a31d 
+
+# 6  ls-tree
+./mygit ls-tree 1ac323ab2a1529daafdd784cba7558ef3575a31d 
+
+# 7  ls-tree --name-only
+./mygit ls-tree --name-only 1ac323ab2a1529daafdd784cba7558ef3575a31d
+
+# 8  add (all files)
+./mygit add .
+cat .mygit/index
+
+# 9  add (specific files)
+echo "int main() {}" > main.cpp
+echo "int add();" > utils.cpp
+./mygit add main.cpp utils.cpp
+cat .mygit/index
+
+# 10 commit with message
+./mygit commit -m "First commit"
+
+# Change some files
+echo "version 2" > test.txt
+rm -r test_tree_2
+echo "new" > new.txt
+
+# 11 add + commit without message
+./mygit add .
+./mygit commit
+
+# 12 log
+./mygit log
+
+# 13 checkout old commit
+./mygit checkout <C1>
+ls
+cat test.txt
+
+# 14 checkout latest commit
+./mygit checkout <C2>
+ls
+cat test.txt
+
+
+# ===================== ERROR CASES (must not crash) =====================
+
+# 15 checkout invalid SHA
+./mygit checkout 0123456789012345678901234567890123456789
+
+# 16 checkout a blob (not a commit)
+./mygit checkout 95d09f2b10159347eece71399a7e2e907ea3df4f
+
+# 17 ls-tree on a blob (not a tree)
+./mygit ls-tree 95d09f2b10159347eece71399a7e2e907ea3df4f
+
+# 18 cat-file with a non-existent SHA
+./mygit cat-file -p 0000000000000000000000000000000000000000
+
+# 19 add a missing file
+./mygit add nofile.txt
+
+# 20 init again
+./mygit init
+./mygit log
+
+
+# ===================== CLEANUP =====================
+cd ..
+rm -rf eval_test
